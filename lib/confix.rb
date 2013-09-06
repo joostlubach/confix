@@ -220,7 +220,10 @@ module Confix
           key = key.to_s
 
           if self.class.configs[key]
-            raise CannotModifyConfiguration, "you cannot set option #{key} as it refers to a child configuration"
+            raise CannotModifyConfiguration, "you cannot update a child configuration with anything else than a hash" unless value.is_a?(Hash)
+
+            config = (config_root.configs[self.class.expand_key(key)] ||= self.class.configs[key].new(self))
+            config.update value
           elsif child?
             raise UndefinedSetting, "setting '#{self.class.expand_key(key)}' does not exist" unless self.class.key_defined?(key)
             config_root.values[self.class.expand_key(key)] = value

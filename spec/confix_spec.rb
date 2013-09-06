@@ -167,6 +167,13 @@ describe Confix do
 
   end
 
+  it "should allow setting a child configuration" do
+    @config.two.four = { :five => 'Five' }
+    @config.two = { :three => 'Three' }
+
+    @config.two.to_hash.should == {"three"=>"Three", "four"=>{"five"=>"Five"}}
+  end
+
   describe 'assigns' do
     it "should use the assigns hash for any string setting" do
       @config.assigns[:my_var] = 'test'
