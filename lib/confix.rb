@@ -251,11 +251,7 @@ module Confix
 
         if hash
           hash.each do |key, value|
-            if value.is_a?(Hash)
-              self[key].update value
-            else
-              self[key] = value
-            end
+            set key, value
           end
         end
 

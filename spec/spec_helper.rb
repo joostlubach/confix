@@ -1,12 +1,10 @@
+require 'simplecov'
+SimpleCov.start do
+  add_filter "spec/"
+end
+
 require 'confix'
 require 'rspec/autorun'
-
-# require 'simplecov'
-# SimpleCov.start do
-#   add_filter "_spec.rb"
-#   add_filter "spec/"
-#   add_group "Libs", "../libs/"
-# end
 
 RSpec.configure do |config|
 
